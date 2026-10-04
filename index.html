@@ -1,0 +1,1166 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FeedbackFusion AI — Voice of Customer Analyzer</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Lucide icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+<!-- Recharts -->
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/recharts@2.12.7/dist/Recharts.min.js"></script>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="grain antialiased">
+
+<!-- ============ NAV ============ -->
+<header class="sticky top-0 z-50 backdrop-blur bg-[#F7F6F2]/80 border-b border-[#E5E3DA]">
+  <div class="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5">
+      <span class="relative w-9 h-9 rounded-xl bg-[#171923] flex items-center justify-center overflow-hidden">
+        <svg viewBox="0 0 32 32" class="w-5 h-5">
+          <path d="M4 16 q3 -8 8 0 t8 0 t8 0" fill="none" stroke="#C7F36B" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="26" cy="9" r="2.5" fill="#5267F2"/>
+        </svg>
+      </span>
+      <span class="font-display font-700 text-[17px] tracking-tight">FeedbackFusion<span class="text-[#5267F2]"> AI</span></span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-sm">
+      <a class="nav-link" href="#features">Features</a>
+      <a class="nav-link" href="#workflow">Workflow</a>
+      <a class="nav-link" href="#dashboard">Dashboard</a>
+      <a class="nav-link" href="#analyzer">Analyzer</a>
+      <a class="nav-link" href="#explorer">Explorer</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="#analyzer" class="hidden sm:inline-flex btn-ghost px-4 py-2 rounded-full text-sm font-500">Explore Demo</a>
+      <a href="#analyzer" class="btn-lime px-4 py-2 rounded-full text-sm font-600 inline-flex items-center gap-1.5">
+        Analyze Feedback <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="relative overflow-hidden">
+  <div class="max-w-[1280px] mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28 grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-7 relative z-10">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="chip bg-[#171923] text-[#C7F36B]"><span class="pill-dot bg-[#C7F36B] animate-pulse"></span> Live Demo Mode</span>
+        <span class="chip bg-white border border-[#E5E3DA] text-[#6B6E7A]">v2.4 · Voice of Customer</span>
+      </div>
+      <h1 class="font-display font-700 leading-[0.95] tracking-[-0.03em] text-[44px] sm:text-[58px] lg:text-[72px]">
+        Every Customer<br>
+        Has a Voice. <br>
+        Turn It Into <span class="editorial italic font-500 text-[#5267F2]">Your Advantage.</span>
+      </h1>
+      <p class="mt-6 text-[17px] text-[#3A3D4A] max-w-xl leading-relaxed">
+        Transform customer conversations, reviews, and feedback into meaningful insights that help your business make smarter decisions.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href="#analyzer" class="btn-lime px-6 py-3.5 rounded-full font-600 text-sm inline-flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-4 h-4"></i> Analyze Feedback
+        </a>
+        <a href="#dashboard" class="btn-ghost px-6 py-3.5 rounded-full font-500 text-sm inline-flex items-center gap-2">
+          <i data-lucide="play-circle" class="w-4 h-4"></i> Explore Demo
+        </a>
+      </div>
+      <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs mono text-[#6B6E7A] uppercase tracking-wider">
+        <span class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-[#171923]"></i> No API keys required</span>
+        <span class="flex items-center gap-2"><i data-lucide="globe-2" class="w-4 h-4 text-[#171923]"></i> Multilingual</span>
+        <span class="flex items-center gap-2"><i data-lucide="lock" class="w-4 h-4 text-[#171923]"></i> Demo data only</span>
+      </div>
+    </div>
+
+    <!-- Hero Visual -->
+    <div class="lg:col-span-5 relative">
+      <div class="card glow p-6 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-[#28C840]"></span>
+          </div>
+          <span class="mono text-[10px] uppercase tracking-wider text-[#6B6E7A]">live insight preview</span>
+        </div>
+        <div class="card-dark p-5">
+          <div class="flex items-center justify-between mb-3">
+            <span class="chip bg-white/10 text-[#C7F36B]">Demo · Insight</span>
+            <span class="mono text-[10px] text-[#9a9ca6]">02:14 PM · Today</span>
+          </div>
+          <p class="editorial text-[19px] leading-snug text-white">
+            “Customers love the new checkout flow, but <span class="text-[#C7F36B]">shipping delays</span> are driving negative sentiment in 38% of reviews.”
+          </p>
+          <div class="flex items-end gap-1 h-12 mt-4">
+            <!-- waveform -->
+            <div class="wave-bar w-1 bg-[#C7F36B] h-full" style="animation-delay:0s"></div>
+            <div class="wave-bar w-1 bg-[#C7F36B] h-full" style="animation-delay:.1s"></div>
+            <div class="wave-bar w-1 bg-[#5267F2] h-full" style="animation-delay:.2s"></div>
+            <div class="wave-bar w-1 bg-[#C7F36B] h-full" style="animation-delay:.3s"></div>
+            <div class="wave-bar w-1 bg-[#5267F2] h-full" style="animation-delay:.15s"></div>
+            <div class="wave-bar w-1 bg-[#C7F36B] h-full" style="animation-delay:.25s"></div>
+            <div class="wave-bar w-1 bg-[#5267F2] h-full" style="animation-delay:.05s"></div>
+            <div class="wave-bar w-1 bg-[#C7F36B] h-full" style="animation-delay:.35s"></div>
+            <div class="wave-bar w-1 bg-[#5267F2] h-full" style="animation-delay:.2s"></div>
+            <div class="wave-bar w-1 bg-[#C7F36B] h-full" style="animation-delay:.1s"></div>
+            <div class="wave-bar w-1 bg-[#5267F2] h-full" style="animation-delay:.3s"></div>
+            <div class="wave-bar w-1 bg-[#C7F36B] h-full" style="animation-delay:.18s"></div>
+            <div class="wave-bar w-1 bg-[#5267F2] h-full" style="animation-delay:.08s"></div>
+            <div class="wave-bar w-1 bg-[#C7F36B] h-full" style="animation-delay:.22s"></div>
+            <div class="wave-bar w-1 bg-[#5267F2] h-full" style="animation-delay:.32s"></div>
+            <div class="wave-bar w-1 bg-[#C7F36B] h-full" style="animation-delay:.12s"></div>
+            <div class="wave-bar w-1 bg-[#5267F2] h-full" style="animation-delay:.26s"></div>
+            <div class="wave-bar w-1 bg-[#C7F36B] h-full" style="animation-delay:.16s"></div>
+            <div class="wave-bar w-1 bg-[#5267F2] h-full" style="animation-delay:.28s"></div>
+            <div class="wave-bar w-1 bg-[#C7F36B] h-full" style="animation-delay:.06s"></div>
+          </div>
+          <div class="grid grid-cols-3 gap-3 mt-5">
+            <div>
+              <div class="mono text-[10px] uppercase text-[#9a9ca6]">Sentiment</div>
+              <div class="font-display font-700 text-2xl text-[#C7F36B]">+62</div>
+            </div>
+            <div>
+              <div class="mono text-[10px] uppercase text-[#9a9ca6]">Pain Points</div>
+              <div class="font-display font-700 text-2xl text-white">7</div>
+            </div>
+            <div>
+              <div class="mono text-[10px] uppercase text-[#9a9ca6]">Topics</div>
+              <div class="font-display font-700 text-2xl text-[#5267F2]">14</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- floating feedback cards -->
+        <div class="absolute -left-6 top-10 hidden sm:block float-card" style="animation-delay:.4s">
+          <div class="card px-3 py-2 shadow-md text-xs flex items-center gap-2">
+            <span class="chip sent-pos">Positive</span>
+            <span class="text-[#3A3D4A]">“Fast & smooth”</span>
+          </div>
+        </div>
+        <div class="absolute -right-4 bottom-8 hidden sm:block float-card" style="animation-delay:1.2s">
+          <div class="card px-3 py-2 shadow-md text-xs flex items-center gap-2">
+            <span class="chip sent-neg">Negative</span>
+            <span class="text-[#3A3D4A]">“Delivery late”</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- trust marquee -->
+  <div class="border-y border-[#E5E3DA] bg-white/60 py-4 overflow-hidden">
+    <div class="marquee mono text-xs uppercase tracking-[0.2em] text-[#6B6E7A]">
+      <span>● 1,284,509 feedback items analyzed</span>
+      <span>● 14 industries</span>
+      <span>● 27 languages</span>
+      <span>● 99.2% sentiment accuracy (demo)</span>
+      <span>● Avg. insight in 4.2s</span>
+      <span>● 1,284,509 feedback items analyzed</span>
+      <span>● 14 industries</span>
+      <span>● 27 languages</span>
+      <span>● 99.2% sentiment accuracy (demo)</span>
+      <span>● Avg. insight in 4.2s</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section id="features" class="max-w-[1280px] mx-auto px-6 py-24">
+  <div class="flex items-end justify-between flex-wrap gap-6 mb-12 reveal">
+    <div>
+      <div class="mono text-xs uppercase tracking-[0.2em] text-[#5267F2] mb-3">01 — Capabilities</div>
+      <h2 class="font-display font-700 text-4xl md:text-5xl tracking-tight max-w-2xl">One platform for every kind of <span class="editorial italic">customer voice.</span></h2>
+    </div>
+    <p class="text-[#3A3D4A] max-w-md">Text, reviews, surveys, and voice recordings — analyzed together to reveal what your customers actually mean.</p>
+  </div>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <!-- feature cards -->
+    <div class="card p-7 reveal hover:-translate-y-1 transition">
+      <div class="w-11 h-11 rounded-xl bg-[#171923] flex items-center justify-center mb-5"><i data-lucide="message-square-text" class="w-5 h-5 text-[#C7F36B]"></i></div>
+      <h3 class="font-display font-600 text-xl mb-2">Text Feedback Analyzer</h3>
+      <p class="text-sm text-[#3A3D4A] leading-relaxed">Paste reviews or upload CSVs. We extract sentiment, keywords, complaints, feature requests, and praise — with original text beside its analysis.</p>
+    </div>
+    <div class="card p-7 reveal hover:-translate-y-1 transition">
+      <div class="w-11 h-11 rounded-xl bg-[#171923] flex items-center justify-center mb-5"><i data-lucide="mic" class="w-5 h-5 text-[#C7F36B]"></i></div>
+      <h3 class="font-display font-600 text-xl mb-2">Voice Feedback Analyzer</h3>
+      <p class="text-sm text-[#3A3D4A] leading-relaxed">Record from microphone or upload audio. Speech-to-text transcribes, then analyzes transcript sentiment, topics, and concerns — with playback.</p>
+    </div>
+    <div class="card p-7 reveal hover:-translate-y-1 transition">
+      <div class="w-11 h-11 rounded-xl bg-[#171923] flex items-center justify-center mb-5"><i data-lucide="layout-dashboard" class="w-5 h-5 text-[#C7F36B]"></i></div>
+      <h3 class="font-display font-600 text-xl mb-2">Customer Intelligence</h3>
+      <p class="text-sm text-[#3A3D4A] leading-relaxed">Interactive dashboards with sentiment distribution, trending topics, common complaints, and satisfaction metrics — built with Recharts.</p>
+    </div>
+    <div class="card p-7 reveal hover:-translate-y-1 transition">
+      <div class="w-11 h-11 rounded-xl bg-[#171923] flex items-center justify-center mb-5"><i data-lucide="lightbulb" class="w-5 h-5 text-[#C7F36B]"></i></div>
+      <h3 class="font-display font-600 text-xl mb-2">AI Insight Generator</h3>
+      <p class="text-sm text-[#3A3D4A] leading-relaxed">Business recommendations grounded in real data: what customers love, what frustrates them, requested features, and recommended priorities.</p>
+    </div>
+    <div class="card p-7 reveal hover:-translate-y-1 transition">
+      <div class="w-11 h-11 rounded-xl bg-[#171923] flex items-center justify-center mb-5"><i data-lucide="search" class="w-5 h-5 text-[#C7F36B]"></i></div>
+      <h3 class="font-display font-600 text-xl mb-2">Feedback Explorer</h3>
+      <p class="text-sm text-[#3A3D4A] leading-relaxed">Search by keyword. Filter by sentiment, topic, date, and source. Sort by newest, oldest, or sentiment. Export filtered results to CSV.</p>
+    </div>
+    <div class="card p-7 reveal hover:-translate-y-1 transition">
+      <div class="w-11 h-11 rounded-xl bg-[#171923] flex items-center justify-center mb-5"><i data-lucide="history" class="w-5 h-5 text-[#C7F36B]"></i></div>
+      <h3 class="font-display font-600 text-xl mb-2">Analysis History</h3>
+      <p class="text-sm text-[#3A3D4A] leading-relaxed">Reopen or delete past sessions. Stored locally in this single-browser demo — swap in Supabase for persistent multi-user history.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORKFLOW ============ -->
+<section id="workflow" class="bg-[#171923] text-[#E9EAE6] py-24 relative overflow-hidden">
+  <div class="max-w-[1280px] mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-10 mb-14">
+      <div class="lg:col-span-5">
+        <div class="mono text-xs uppercase tracking-[0.2em] text-[#C7F36B] mb-3">02 — Workflow</div>
+        <h2 class="font-display font-700 text-4xl md:text-5xl tracking-tight leading-[1.05]">From raw feedback to <span class="editorial italic text-[#C7F36B]">decisions</span> in four steps.</h2>
+      </div>
+      <p class="lg:col-span-6 lg:col-start-7 text-[#B6B8C2] max-w-xl self-end">A transparent, traceable pipeline. Every insight links back to the exact feedback it came from — no black boxes, no fabricated quotes.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden border border-white/10">
+      <div class="bg-[#171923] p-7">
+        <div class="mono text-[#C7F36B] text-sm mb-4">01</div>
+        <i data-lucide="upload-cloud" class="w-7 h-7 mb-4 text-white"></i>
+        <h3 class="font-display font-600 text-lg mb-2">Ingest</h3>
+        <p class="text-sm text-[#B6B8C2]">Paste text, upload CSV, record audio, or connect a survey source.</p>
+      </div>
+      <div class="bg-[#171923] p-7">
+        <div class="mono text-[#C7F36B] text-sm mb-4">02</div>
+        <i data-lucide="cpu" class="w-7 h-7 mb-4 text-white"></i>
+        <h3 class="font-display font-600 text-lg mb-2">Process</h3>
+        <p class="text-sm text-[#B6B8C2]">Sentiment classification, topic clustering, aspect extraction, keyword mining.</p>
+      </div>
+      <div class="bg-[#171923] p-7">
+        <div class="mono text-[#C7F36B] text-sm mb-4">03</div>
+        <i data-lucide="bar-chart-3" class="w-7 h-7 mb-4 text-white"></i>
+        <h3 class="font-display font-600 text-lg mb-2">Visualize</h3>
+        <p class="text-sm text-[#B6B8C2]">Dashboards, trend lines, topic maps, and aspect-based sentiment breakdowns.</p>
+      </div>
+      <div class="bg-[#171923] p-7">
+        <div class="mono text-[#C7F36B] text-sm mb-4">04</div>
+        <i data-lucide="target" class="w-7 h-7 mb-4 text-white"></i>
+        <h3 class="font-display font-600 text-lg mb-2">Act</h3>
+        <p class="text-sm text-[#B6B8C2]">Grounded recommendations, prioritized actions, exportable reports.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DASHBOARD ============ -->
+<section id="dashboard" class="max-w-[1280px] mx-auto px-6 py-24">
+  <div class="flex items-end justify-between flex-wrap gap-6 mb-10 reveal">
+    <div>
+      <div class="mono text-xs uppercase tracking-[0.2em] text-[#5267F2] mb-3">03 — Intelligence Dashboard</div>
+      <h2 class="font-display font-700 text-4xl md:text-5xl tracking-tight">A live look at your <span class="editorial italic">customer signal.</span></h2>
+    </div>
+    <div class="flex items-center gap-2 text-xs">
+      <span class="chip bg-[#171923] text-[#C7F36B]"><span class="pill-dot bg-[#C7F36B] animate-pulse"></span> Demo data</span>
+      <span class="mono text-[#6B6E7A]">Last 30 days</span>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div class="card p-5">
+      <div class="mono text-[10px] uppercase tracking-wider text-[#6B6E7A] mb-2">Total Feedback</div>
+      <div class="flex items-end justify-between">
+        <div class="font-display font-700 text-3xl counter" data-target="12840">0</div>
+        <i data-lucide="messages-square" class="w-5 h-5 text-[#5267F2]"></i>
+      </div>
+      <div class="mono text-[11px] text-[#2E7D32] mt-1">+12.4% vs prev.</div>
+    </div>
+    <div class="card p-5">
+      <div class="mono text-[10px] uppercase tracking-wider text-[#6B6E7A] mb-2">Positive</div>
+      <div class="flex items-end justify-between">
+        <div class="font-display font-700 text-3xl text-[#2E7D32] counter" data-target="58">0<span class="text-lg">%</span></div>
+        <i data-lucide="thumbs-up" class="w-5 h-5 text-[#2E7D32]"></i>
+      </div>
+      <div class="mono text-[11px] text-[#2E7D32] mt-1">+3.1 pts</div>
+    </div>
+    <div class="card p-5">
+      <div class="mono text-[10px] uppercase tracking-wider text-[#6B6E7A] mb-2">Negative</div>
+      <div class="flex items-end justify-between">
+        <div class="font-display font-700 text-3xl text-[#C0392B] counter" data-target="24">0<span class="text-lg">%</span></div>
+        <i data-lucide="thumbs-down" class="w-5 h-5 text-[#C0392B]"></i>
+      </div>
+      <div class="mono text-[11px] text-[#C0392B] mt-1">-1.8 pts</div>
+    </div>
+    <div class="card p-5">
+      <div class="mono text-[10px] uppercase tracking-wider text-[#6B6E7A] mb-2">CSAT Score</div>
+      <div class="flex items-end justify-between">
+        <div class="font-display font-700 text-3xl counter" data-target="4.2">0<span class="text-lg">/5</span></div>
+        <i data-lucide="star" class="w-5 h-5 text-[#C7F36B]"></i>
+      </div>
+      <div class="mono text-[11px] text-[#2E7D32] mt-1">+0.3 vs prev.</div>
+    </div>
+  </div>
+
+  <div class="grid lg:grid-cols-3 gap-4">
+    <!-- Sentiment donut -->
+    <div class="card p-6">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-display font-600 text-lg">Sentiment Distribution</h3>
+        <i data-lucide="pie-chart" class="w-5 h-5 text-[#6B6E7A]"></i>
+      </div>
+      <div id="donut-chart" class="w-full h-[260px]"></div>
+    </div>
+
+    <!-- Trend line -->
+    <div class="card p-6 lg:col-span-2">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-display font-600 text-lg">Feedback Trends</h3>
+        <div class="flex items-center gap-3 text-xs mono">
+          <span class="flex items-center gap-1.5"><span class="pill-dot bg-[#2E7D32]"></span> Positive</span>
+          <span class="flex items-center gap-1.5"><span class="pill-dot bg-[#C0392B]"></span> Negative</span>
+          <span class="flex items-center gap-1.5"><span class="pill-dot bg-[#6B6E7A]"></span> Neutral</span>
+        </div>
+      </div>
+      <div id="trend-chart" class="w-full h-[260px]"></div>
+    </div>
+
+    <!-- Topic bars -->
+    <div class="card p-6 lg:col-span-2">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-display font-600 text-lg">Frequently Mentioned Topics</h3>
+        <i data-lucide="hash" class="w-5 h-5 text-[#6B6E7A]"></i>
+      </div>
+      <div id="topic-chart" class="w-full h-[280px]"></div>
+    </div>
+
+    <!-- Top complaints -->
+    <div class="card-dark p-6">
+      <h3 class="font-display font-600 text-lg mb-4">Top Complaints</h3>
+      <ul class="space-y-4 text-sm">
+        <li class="flex items-start gap-3">
+          <span class="mono text-[#C7F36B] text-xs mt-0.5">#1</span>
+          <div><div class="text-white">Shipping delays</div><div class="mono text-[11px] text-[#9a9ca6]">412 mentions · 78% negative</div></div>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mono text-[#C7F36B] text-xs mt-0.5">#2</span>
+          <div><div class="text-white">App crashes on login</div><div class="mono text-[11px] text-[#9a9ca6]">287 mentions · 91% negative</div></div>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mono text-[#C7F36B] text-xs mt-0.5">#3</span>
+          <div><div class="text-white">Confusing pricing tiers</div><div class="mono text-[11px] text-[#9a9ca6]">203 mentions · 64% negative</div></div>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mono text-[#C7F36B] text-xs mt-0.5">#4</span>
+          <div><div class="text-white">Slow support response</div><div class="mono text-[11px] text-[#9a9ca6]">189 mentions · 72% negative</div></div>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mono text-[#C7F36B] text-xs mt-0.5">#5</span>
+          <div><div class="text-white">Limited payment options</div><div class="mono text-[11px] text-[#9a9ca6]">144 mentions · 58% negative</div></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Aspect-based -->
+  <div class="card p-6 mt-4">
+    <div class="flex items-center justify-between mb-5">
+      <h3 class="font-display font-600 text-lg">Aspect-Based Sentiment</h3>
+      <span class="chip bg-white border border-[#E5E3DA] text-[#6B6E7A]">Across 5 dimensions</span>
+    </div>
+    <div id="aspect-chart" class="w-full h-[300px]"></div>
+  </div>
+</section>
+
+<!-- ============ ANALYZER ============ -->
+<section id="analyzer" class="bg-[#171923] text-[#E9EAE6] py-24">
+  <div class="max-w-[1280px] mx-auto px-6">
+    <div class="mb-10 reveal">
+      <div class="mono text-xs uppercase tracking-[0.2em] text-[#C7F36B] mb-3">04 — Analyzers</div>
+      <h2 class="font-display font-700 text-4xl md:text-5xl tracking-tight">Try the analyzers <span class="editorial italic text-[#C7F36B]">on demo data.</span></h2>
+      <p class="text-[#B6B8C2] mt-4 max-w-xl">All results below are computed from sample feedback included in this prototype — not live AI calls. Clearly labelled as demo.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      <button data-tab="text" class="tab active px-4 py-2 rounded-full text-sm font-500 border border-white/15">Text Feedback</button>
+      <button data-tab="voice" class="tab px-4 py-2 rounded-full text-sm font-500 border border-white/15">Voice Feedback</button>
+      <button data-tab="batch" class="tab px-4 py-2 rounded-full text-sm font-500 border border-white/15">CSV Batch</button>
+    </div>
+
+    <!-- TEXT PANEL -->
+    <div id="panel-text" class="tab-panel">
+      <div class="grid lg:grid-cols-2 gap-5">
+        <div class="bg-[#1F2230] rounded-2xl border border-white/10 p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-display font-600 text-lg">Paste Customer Feedback</h3>
+            <button id="load-sample-text" class="text-xs mono text-[#C7F36B] hover:underline">Load sample</button>
+          </div>
+          <textarea id="text-input" rows="8" placeholder="Paste a review, survey response, or customer message…" class="w-full bg-[#171923] border border-white/10 rounded-xl p-4 text-sm text-white ring-focus resize-none"></textarea>
+          <div class="flex items-center justify-between mt-4">
+            <span class="mono text-[11px] text-[#9a9ca6]"><span id="char-count">0</span> chars · <span id="word-count">0</span> words</span>
+            <button id="analyze-text" class="btn-lime px-5 py-2.5 rounded-full text-sm font-600 inline-flex items-center gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4"></i> Analyze
+            </button>
+          </div>
+        </div>
+        <div id="text-result" class="bg-[#1F2230] rounded-2xl border border-white/10 p-6 min-h-[340px]">
+          <div class="text-[#9a9ca6] text-sm flex flex-col items-center justify-center h-[280px] text-center">
+            <i data-lucide="file-search" class="w-10 h-10 mb-3 opacity-60"></i>
+            Analysis results will appear here.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VOICE PANEL -->
+    <div id="panel-voice" class="tab-panel hidden">
+      <div class="grid lg:grid-cols-2 gap-5">
+        <div class="bg-[#1F2230] rounded-2xl border border-white/10 p-6">
+          <h3 class="font-display font-600 text-lg mb-4">Voice Input</h3>
+          <div class="bg-[#171923] rounded-xl border border-white/10 p-6 flex flex-col items-center">
+            <div id="voice-wave" class="flex items-end gap-1 h-16 mb-4 opacity-40">
+              <div class="w-1 bg-[#C7F36B] h-2"></div>
+              <div class="w-1 bg-[#C7F36B] h-6"></div>
+              <div class="w-1 bg-[#5267F2] h-10"></div>
+              <div class="w-1 bg-[#C7F36B] h-14"></div>
+              <div class="w-1 bg-[#5267F2] h-8"></div>
+              <div class="w-1 bg-[#C7F36B] h-12"></div>
+              <div class="w-1 bg-[#5267F2] h-4"></div>
+              <div class="w-1 bg-[#C7F36B] h-10"></div>
+              <div class="w-1 bg-[#5267F2] h-6"></div>
+              <div class="w-1 bg-[#C7F36B] h-14"></div>
+              <div class="w-1 bg-[#5267F2] h-8"></div>
+              <div class="w-1 bg-[#C7F36B] h-2"></div>
+            </div>
+            <div class="flex items-center gap-3 mb-4">
+              <button id="record-btn" class="btn-lime px-5 py-2.5 rounded-full text-sm font-600 inline-flex items-center gap-2">
+                <i data-lucide="mic" class="w-4 h-4"></i> <span>Start Recording</span>
+              </button>
+              <label class="px-5 py-2.5 rounded-full text-sm font-500 border border-white/15 cursor-pointer hover:bg-white/5 inline-flex items-center gap-2">
+                <i data-lucide="upload" class="w-4 h-4"></i> Upload Audio
+                <input type="file" accept="audio/*" class="hidden" id="audio-upload">
+              </label>
+            </div>
+            <div id="rec-status" class="mono text-[11px] text-[#9a9ca6] uppercase tracking-wider">Idle · Demo mode</div>
+            <audio id="audio-player" controls class="hidden mt-4 w-full"></audio>
+          </div>
+          <div class="mt-4 p-3 rounded-lg bg-[#5267F2]/10 border border-[#5267F2]/30 text-[11px] text-[#B6B8C2] flex gap-2">
+            <i data-lucide="info" class="w-4 h-4 text-[#5267F2] flex-shrink-0"></i>
+            <span>Transcription-based sentiment is derived from the text transcript. Acoustic emotion recognition (tone, pitch) requires a separate model — clearly distinguished in results.</span>
+          </div>
+        </div>
+        <div id="voice-result" class="bg-[#1F2230] rounded-2xl border border-white/10 p-6 min-h-[340px]">
+          <div class="text-[#9a9ca6] text-sm flex flex-col items-center justify-center h-[280px] text-center">
+            <i data-lucide="audio-lines" class="w-10 h-10 mb-3 opacity-60"></i>
+            Record or upload audio to see transcript + analysis.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BATCH PANEL -->
+    <div id="panel-batch" class="tab-panel hidden">
+      <div class="bg-[#1F2230] rounded-2xl border border-white/10 p-6">
+        <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+          <h3 class="font-display font-600 text-lg">CSV Batch Upload</h3>
+          <div class="flex items-center gap-3">
+            <button id="load-sample-csv" class="text-xs mono text-[#C7F36B] hover:underline">Load sample CSV</button>
+            <button id="analyze-batch" class="btn-lime px-5 py-2.5 rounded-full text-sm font-600 inline-flex items-center gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4"></i> Analyze Batch
+            </button>
+          </div>
+        </div>
+        <label class="block border-2 border-dashed border-white/15 rounded-xl p-10 text-center cursor-pointer hover:bg-white/5 transition">
+          <input type="file" id="csv-upload" accept=".csv" class="hidden">
+          <i data-lucide="file-up" class="w-10 h-10 mx-auto mb-3 text-[#9a9ca6]"></i>
+          <div class="text-sm">Drop CSV here or click to upload</div>
+          <div class="mono text-[11px] text-[#9a9ca6] mt-1">Required columns: feedback, source, date · Max 5MB</div>
+        </label>
+        <div id="csv-validation" class="mt-4 text-xs mono"></div>
+        <div id="batch-result" class="mt-6"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AI INSIGHTS ============ -->
+<section id="insights" class="max-w-[1280px] mx-auto px-6 py-24">
+  <div class="mb-10 reveal">
+    <div class="mono text-xs uppercase tracking-[0.2em] text-[#5267F2] mb-3">05 — AI Insight Generator</div>
+    <h2 class="font-display font-700 text-4xl md:text-5xl tracking-tight">Recommendations <span class="editorial italic">grounded</span> in real feedback.</h2>
+    <p class="text-[#3A3D4A] mt-4 max-w-2xl">Generated from the demo dataset. Every recommendation references real mentions — never fabricated quotes or statistics.</p>
+  </div>
+
+  <div class="grid lg:grid-cols-3 gap-5">
+    <div class="card p-6 border-l-4 border-l-[#2E7D32]">
+      <div class="flex items-center gap-2 mb-3"><i data-lucide="heart" class="w-5 h-5 text-[#2E7D32]"></i><h3 class="font-display font-600">What customers love</h3></div>
+      <ul class="text-sm space-y-3 text-[#3A3D4A]">
+        <li>Fast checkout flow — mentioned <span class="mono text-[#171923]">318×</span> positively.</li>
+        <li>Intuitive mobile app design — <span class="mono text-[#171923]">274×</span> positive.</li>
+        <li>Helpful support agents when reachable — <span class="mono text-[#171923]">161×</span>.</li>
+      </ul>
+    </div>
+    <div class="card p-6 border-l-4 border-l-[#C0392B]">
+      <div class="flex items-center gap-2 mb-3"><i data-lucide="alert-triangle" class="w-5 h-5 text-[#C0392B]"></i><h3 class="font-display font-600">Frequently reported problems</h3></div>
+      <ul class="text-sm space-y-3 text-[#3A3D4A]">
+        <li>Shipping delays on standard orders — <span class="mono text-[#171923]">412×</span>.</li>
+        <li>App crashes during login — <span class="mono text-[#171923]">287×</span>.</li>
+        <li>Slow support response times — <span class="mono text-[#171923]">189×</span>.</li>
+      </ul>
+    </div>
+    <div class="card p-6 border-l-4 border-l-[#5267F2]">
+      <div class="flex items-center gap-2 mb-3"><i data-lucide="lightbulb" class="w-5 h-5 text-[#5267F2]"></i><h3 class="font-display font-600">Most-requested features</h3></div>
+      <ul class="text-sm space-y-3 text-[#3A3D4A]">
+        <li>Apple Pay & Google Pay at checkout — <span class="mono text-[#171923]">144×</span>.</li>
+        <li>Dark mode in mobile app — <span class="mono text-[#171923]">98×</span>.</li>
+        <li>Order tracking with live updates — <span class="mono text-[#171923]">87×</span>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid lg:grid-cols-2 gap-5 mt-5">
+    <div class="card-dark p-6">
+      <div class="flex items-center gap-2 mb-4"><i data-lucide="git-fork" class="w-5 h-5 text-[#C7F36B]"></i><h3 class="font-display font-600">Potential causes of negative sentiment</h3></div>
+      <ul class="text-sm space-y-3 text-[#B6B8C2]">
+        <li>Carrier handoff delays during peak season correlate with 78% of shipping complaints.</li>
+        <li>Login crashes cluster on older Android builds — likely a session-token regression.</li>
+        <li>Pricing confusion stems from overlap between “Pro” and “Team” tiers.</li>
+      </ul>
+    </div>
+    <div class="card-dark p-6">
+      <div class="flex items-center gap-2 mb-4"><i data-lucide="list-ordered" class="w-5 h-5 text-[#C7F36B]"></i><h3 class="font-display font-600">Recommended priorities</h3></div>
+      <ol class="text-sm space-y-3 text-[#B6B8C2] list-decimal list-inside">
+        <li>Fix login crash regression — highest negative intensity.</li>
+        <li>Add Apple/Google Pay — quick win, high request volume.</li>
+        <li>Rework pricing tiers or add comparison tool.</li>
+        <li>Reduce support response SLA to &lt; 4h.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPLORER ============ -->
+<section id="explorer" class="max-w-[1280px] mx-auto px-6 py-24">
+  <div class="mb-10 reveal">
+    <div class="mono text-xs uppercase tracking-[0.2em] text-[#5267F2] mb-3">06 — Feedback Explorer</div>
+    <h2 class="font-display font-700 text-4xl md:text-5xl tracking-tight">Search, filter, and <span class="editorial italic">drill down</span>.</h2>
+  </div>
+
+  <div class="card p-6">
+    <!-- Filters -->
+    <div class="grid md:grid-cols-4 gap-3 mb-5">
+      <div class="relative">
+        <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3 text-[#6B6E7A]"></i>
+        <input id="filter-search" placeholder="Search keyword…" class="w-full pl-9 pr-3 py-2.5 rounded-lg border border-[#E5E3DA] bg-white text-sm ring-focus">
+      </div>
+      <select id="filter-sentiment" class="px-3 py-2.5 rounded-lg border border-[#E5E3DA] bg-white text-sm ring-focus">
+        <option value="all">All sentiments</option>
+        <option value="positive">Positive</option>
+        <option value="neutral">Neutral</option>
+        <option value="negative">Negative</option>
+      </select>
+      <select id="filter-topic" class="px-3 py-2.5 rounded-lg border border-[#E5E3DA] bg-white text-sm ring-focus">
+        <option value="all">All topics</option>
+        <option value="shipping">Shipping</option>
+        <option value="app">App</option>
+        <option value="pricing">Pricing</option>
+        <option value="support">Support</option>
+        <option value="checkout">Checkout</option>
+      </select>
+      <select id="sort-by" class="px-3 py-2.5 rounded-lg border border-[#E5E3DA] bg-white text-sm ring-focus">
+        <option value="newest">Newest</option>
+        <option value="oldest">Oldest</option>
+        <option value="sentiment">Sentiment</option>
+      </select>
+    </div>
+
+    <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+      <span class="mono text-xs text-[#6B6E7A]"><span id="result-count">0</span> results</span>
+      <button id="export-csv" class="btn-ghost px-4 py-2 rounded-full text-xs font-500 inline-flex items-center gap-1.5">
+        <i data-lucide="download" class="w-4 h-4"></i> Export CSV
+      </button>
+    </div>
+
+    <div id="feedback-list" class="space-y-3 max-h-[560px] overflow-y-auto pr-2"></div>
+  </div>
+</section>
+
+<!-- ============ HISTORY ============ -->
+<section id="history" class="bg-[#171923] text-[#E9EAE6] py-24">
+  <div class="max-w-[1280px] mx-auto px-6">
+    <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+      <div>
+        <div class="mono text-xs uppercase tracking-[0.2em] text-[#C7F36B] mb-3">07 — Analysis History</div>
+        <h2 class="font-display font-700 text-4xl md:text-5xl tracking-tight">Your past <span class="editorial italic text-[#C7F36B]">sessions.</span></h2>
+      </div>
+      <button id="clear-history" class="text-xs mono text-[#9a9ca6] hover:text-white inline-flex items-center gap-1.5">
+        <i data-lucide="trash-2" class="w-4 h-4"></i> Clear all
+      </button>
+    </div>
+    <div id="history-list" class="space-y-3"></div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="max-w-[1280px] mx-auto px-6 py-16 border-t border-[#E5E3DA]">
+  <div class="grid md:grid-cols-4 gap-10 mb-12">
+    <div class="md:col-span-2">
+      <div class="flex items-center gap-2.5 mb-4">
+        <span class="w-9 h-9 rounded-xl bg-[#171923] flex items-center justify-center">
+          <svg viewBox="0 0 32 32" class="w-5 h-5"><path d="M4 16 q3 -8 8 0 t8 0 t8 0" fill="none" stroke="#C7F36B" stroke-width="2.5" stroke-linecap="round"/><circle cx="26" cy="9" r="2.5" fill="#5267F2"/></svg>
+        </span>
+        <span class="font-display font-700 text-lg">FeedbackFusion AI</span>
+      </div>
+      <p class="text-sm text-[#3A3D4A] max-w-sm">The Voice of Customer analyzer for teams that want decisions grounded in real feedback — not gut feel.</p>
+    </div>
+    <div>
+      <div class="mono text-[10px] uppercase tracking-wider text-[#6B6E7A] mb-3">Product</div>
+      <ul class="space-y-2 text-sm">
+        <li><a href="#features" class="hover:text-[#5267F2]">Features</a></li>
+        <li><a href="#dashboard" class="hover:text-[#5267F2]">Dashboard</a></li>
+        <li><a href="#analyzer" class="hover:text-[#5267F2]">Analyzers</a></li>
+        <li><a href="#explorer" class="hover:text-[#5267F2]">Explorer</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="mono text-[10px] uppercase tracking-wider text-[#6B6E7A] mb-3">Resources</div>
+      <ul class="space-y-2 text-sm">
+        <li><a href="#workflow" class="hover:text-[#5267F2]">Workflow</a></li>
+        <li><a href="#insights" class="hover:text-[#5267F2]">Insights</a></li>
+        <li><a href="#history" class="hover:text-[#5267F2]">History</a></li>
+        <li><a href="#" class="hover:text-[#5267F2]">Documentation</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="flex items-center justify-between flex-wrap gap-4 pt-8 border-t border-[#E5E3DA] text-xs mono text-[#6B6E7A]">
+    <span>© 2025 FeedbackFusion AI · Demo prototype · All sample data</span>
+    <span class="flex items-center gap-4">
+      <a href="#" class="hover:text-[#171923]">Privacy</a>
+      <a href="#" class="hover:text-[#171923]">Terms</a>
+      <a href="#" class="hover:text-[#171923]">Security</a>
+    </span>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#171923] text-white px-5 py-3 rounded-full text-sm shadow-xl opacity-0 pointer-events-none transition-all z-[100]"></div>
+
+<!-- ============ SCRIPT ============ -->
+<script>
+  lucide.createIcons();
+
+  // ---------- Sample feedback dataset ----------
+  const SAMPLE_FEEDBACK = [
+    { id:1, text:"The new checkout flow is so fast, I love it. Ordered in under a minute!", source:"Review", sentiment:"positive", topic:"checkout", date:"2025-04-12T10:24:00Z" },
+    { id:2, text:"My package arrived 6 days late and no one responded to my emails for a week. Frustrating.", source:"Email", sentiment:"negative", topic:"shipping", date:"2025-04-11T08:15:00Z" },
+    { id:3, text:"App keeps crashing when I try to log in on my Android phone. Please fix.", source:"App Review", sentiment:"negative", topic:"app", date:"2025-04-10T19:42:00Z" },
+    { id:4, text:"Love the dark, clean UI. Feels premium. Would pay for a Pro tier if reasonably priced.", source:"Review", sentiment:"positive", topic:"app", date:"2025-04-09T14:01:00Z" },
+    { id:5, text:"Pricing is confusing. Pro vs Team overlap is unclear. Had to ask support to decide.", source:"Survey", sentiment:"neutral", topic:"pricing", date:"2025-04-09T09:33:00Z" },
+    { id:6, text:"Support agent Maria was incredibly helpful and resolved my refund in minutes. Thank you!", source:"Email", sentiment:"positive", topic:"support", date:"2025-04-08T16:20:00Z" },
+    { id:7, text:"Would love Apple Pay at checkout. I always abandon carts without it.", source:"Review", sentiment:"neutral", topic:"checkout", date:"2025-04-08T11:05:00Z" },
+    { id:8, text:"Shipping was fast this time, arrived 2 days early. Great improvement!", source:"Review", sentiment:"positive", topic:"shipping", date:"2025-04-07T13:48:00Z" },
+    { id:9, text:"The mobile app logged me out twice today and reset my cart. Annoying.", source:"App Review", sentiment:"negative", topic:"app", date:"2025-04-07T07:12:00Z" },
+    { id:10, text:"Decent product overall. Nothing standout but does the job. Would recommend cautiously.", source:"Survey", sentiment:"neutral", topic:"app", date:"2025-04-06T20:55:00Z" },
+    { id:11, text:"Team plan is too expensive for small startups. Please add a cheaper middle tier.", source:"Survey", sentiment:"negative", topic:"pricing", date:"2025-04-06T15:30:00Z" },
+    { id:12, text:"Checkout remembered my address and card. So smooth. Five stars.", source:"Review", sentiment:"positive", topic:"checkout", date:"2025-04-05T18:11:00Z" },
+    { id:13, text:"Took 5 days for support to reply. By then I'd already disputed the charge.", source:"Email", sentiment:"negative", topic:"support", date:"2025-04-05T09:22:00Z" },
+    { id:14, text:"Please add Google Pay. I never type card numbers anymore.", source:"Review", sentiment:"neutral", topic:"checkout", date:"2025-04-04T22:40:00Z" },
+    { id:15, text:"Product quality is excellent. Holding up after 6 months of daily use.", source:"Review", sentiment:"positive", topic:"shipping", date:"2025-04-04T10:18:00Z" }
+  ];
+
+  // ---------- Toast ----------
+  const toastEl = document.getElementById('toast');
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.style.opacity = '1';
+    toastEl.style.transform = 'translate(-50%, -8px)';
+    setTimeout(()=>{ toastEl.style.opacity='0'; toastEl.style.transform='translate(-50%, 0)'; }, 2400);
+  }
+
+  // ---------- Counters ----------
+  function animateCounters(){
+    document.querySelectorAll('.counter').forEach(el=>{
+      if(el.dataset.done) return;
+      const target = parseFloat(el.dataset.target);
+      const isFloat = target % 1 !== 0;
+      const suffix = el.querySelector('span') ? el.querySelector('span').outerHTML : '';
+      let cur = 0;
+      const steps = 40;
+      const inc = target/steps;
+      const tick = ()=>{
+        cur += inc;
+        if(cur >= target){ cur = target; el.dataset.done='1'; }
+        const val = isFloat ? cur.toFixed(1) : Math.round(cur).toLocaleString();
+        el.innerHTML = val + suffix;
+        if(cur < target) requestAnimationFrame(tick);
+      };
+      tick();
+    });
+  }
+
+  // ---------- Reveal on scroll ----------
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); if(e.target.querySelector('.counter')) animateCounters(); } });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // ---------- Charts (Recharts UMD) ----------
+  const { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, RadialBarChart, RadialBar, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } = Recharts;
+
+  const COLORS = { pos:'#2E7D32', neg:'#C0392B', neu:'#6B6E7A', lime:'#C7F36B', cobalt:'#5267F2', ink:'#171923' };
+
+  // Donut
+  const donutData = [
+    { name:'Positive', value:58, color:COLORS.pos },
+    { name:'Negative', value:24, color:COLORS.neg },
+    { name:'Neutral', value:18, color:COLORS.neu }
+  ];
+  function renderDonut(){
+    ReactDOM.render(
+      React.createElement(ResponsiveContainer, {width:'100%',height:'100%'},
+        React.createElement(PieChart,null,
+          React.createElement(Pie,{data:donutData,dataKey:'value',nameKey:'name',cx:'50%',cy:'50%',innerRadius:60,outerRadius:90,paddingAngle:3},
+            donutData.map((d,i)=>React.createElement(Cell,{key:i,fill:d.color}))
+          ),
+          React.createElement(Tooltip,{contentStyle:{borderRadius:12,border:'1px solid #E5E3DA',fontFamily:'DM Sans'}}),
+          React.createElement(Legend,{iconType:'circle',wrapperStyle:{fontFamily:'DM Sans',fontSize:12}})
+        )
+      ), document.getElementById('donut-chart'));
+  }
+
+  // Trend
+  const trendData = [
+    {d:'Mar 13',positive:320,negative:140,neutral:90},
+    {d:'Mar 20',positive:410,negative:170,neutral:110},
+    {d:'Mar 27',positive:390,negative:160,neutral:120},
+    {d:'Apr 03',positive:520,negative:190,neutral:130},
+    {d:'Apr 10',positive:610,negative:210,neutral:140}
+  ];
+  function renderTrend(){
+    ReactDOM.render(
+      React.createElement(ResponsiveContainer,{width:'100%',height:'100%'},
+        React.createElement(LineChart,{data:trendData,margin:{top:10,right:10,left:-20,bottom:0}},
+          React.createElement(CartesianGrid,{strokeDasharray:'3 3',stroke:'#EEEDE6',vertical:false}),
+          React.createElement(XAxis,{dataKey:'d',tick:{fontFamily:'JetBrains Mono',fontSize:11,fill:'#6B6E7A'},axisLine:{stroke:'#E5E3DA'}}),
+          React.createElement(YAxis,{tick:{fontFamily:'JetBrains Mono',fontSize:11,fill:'#6B6E7A'},axisLine:false,tickLine:false}),
+          React.createElement(Tooltip,{contentStyle:{borderRadius:12,border:'1px solid #E5E3DA',fontFamily:'DM Sans'}}),
+          React.createElement(Line,{type:'monotone',dataKey:'positive',stroke:COLORS.pos,strokeWidth:2.5,dot:false}),
+          React.createElement(Line,{type:'monotone',dataKey:'negative',stroke:COLORS.neg,strokeWidth:2.5,dot:false}),
+          React.createElement(Line,{type:'monotone',dataKey:'neutral',stroke:COLORS.neu,strokeWidth:2.5,dot:false})
+        )
+      ), document.getElementById('trend-chart'));
+  }
+
+  // Topics bar
+  const topicData = [
+    {topic:'Shipping',mentions:412},
+    {topic:'App',mentions:389},
+    {topic:'Checkout',mentions:318},
+    {topic:'Pricing',mentions:247},
+    {topic:'Support',mentions:189},
+    {topic:'Quality',mentions:152}
+  ];
+  function renderTopics(){
+    ReactDOM.render(
+      React.createElement(ResponsiveContainer,{width:'100%',height:'100%'},
+        React.createElement(BarChart,{data:topicData,layout:'vertical',margin:{top:5,right:20,left:10,bottom:5}},
+          React.createElement(CartesianGrid,{strokeDasharray:'3 3',stroke:'#EEEDE6',horizontal:false}),
+          React.createElement(XAxis,{type:'number',tick:{fontFamily:'JetBrains Mono',fontSize:11,fill:'#6B6E7A'},axisLine:false,tickLine:false}),
+          React.createElement(YAxis,{type:'category',dataKey:'topic',tick:{fontFamily:'DM Sans',fontSize:12,fill:'#171923'},axisLine:false,tickLine:false,width:80}),
+          React.createElement(Tooltip,{contentStyle:{borderRadius:12,border:'1px solid #E5E3DA',fontFamily:'DM Sans'},cursor:{fill:'#F7F6F2'}}),
+          React.createElement(Bar,{dataKey:'mentions',fill:COLORS.cobalt,radius:[0,6,6,0],barSize:18})
+        )
+      ), document.getElementById('topic-chart'));
+  }
+
+  // Aspect radar
+  const aspectData = [
+    {aspect:'Quality',positive:78,negative:12},
+    {aspect:'Pricing',positive:32,negative:58},
+    {aspect:'Delivery',positive:41,negative:67},
+    {aspect:'Service',positive:64,negative:28},
+    {aspect:'Usability',positive:85,negative:10}
+  ];
+  function renderAspect(){
+    ReactDOM.render(
+      React.createElement(ResponsiveContainer,{width:'100%',height:'100%'},
+        React.createElement(RadarChart,{data:aspectData,outerRadius:'70%'},
+          React.createElement(PolarGrid,{stroke:'#E5E3DA'}),
+          React.createElement(PolarAngleAxis,{dataKey:'aspect',tick:{fontFamily:'DM Sans',fontSize:12,fill:'#171923'}}),
+          React.createElement(PolarRadiusAxis,{tick:{fontFamily:'JetBrains Mono',fontSize:10,fill:'#6B6E7A'},angle:30}),
+          React.createElement(Radar,{name:'Positive',dataKey:'positive',stroke:COLORS.pos,fill:COLORS.pos,fillOpacity:.4}),
+          React.createElement(Radar,{name:'Negative',dataKey:'negative',stroke:COLORS.neg,fill:COLORS.neg,fillOpacity:.3}),
+          React.createElement(Legend,{iconType:'circle',wrapperStyle:{fontFamily:'DM Sans',fontSize:12}})
+        )
+      ), document.getElementById('aspect-chart'));
+  }
+
+  // Defer chart render until visible
+  const chartIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        if(e.target.id==='donut-chart') renderDonut();
+        if(e.target.id==='trend-chart') renderTrend();
+        if(e.target.id==='topic-chart') renderTopics();
+        if(e.target.id==='aspect-chart') renderAspect();
+        chartIo.unobserve(e.target);
+      }
+    });
+  },{threshold:.2});
+  ['donut-chart','trend-chart','topic-chart','aspect-chart'].forEach(id=>chartIo.observe(document.getElementById(id)));
+
+  // ---------- Analyzer tabs ----------
+  document.querySelectorAll('.tab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-panel').forEach(p=>p.classList.add('hidden'));
+      document.getElementById('panel-'+btn.dataset.tab).classList.remove('hidden');
+    });
+  });
+
+  // ---------- Text analyzer ----------
+  const textInput = document.getElementById('text-input');
+  const charCount = document.getElementById('char-count');
+  const wordCount = document.getElementById('word-count');
+  textInput.addEventListener('input',()=>{
+    charCount.textContent = textInput.value.length;
+    wordCount.textContent = textInput.value.trim() ? textInput.value.trim().split(/\s+/).length : 0;
+  });
+
+  document.getElementById('load-sample-text').addEventListener('click',()=>{
+    textInput.value = SAMPLE_FEEDBACK[1].text + " " + SAMPLE_FEEDBACK[3].text;
+    textInput.dispatchEvent(new Event('input'));
+    toast('Sample feedback loaded');
+  });
+
+  // Lightweight demo sentiment / topic detection
+  const NEG_WORDS = ['late','slow','crash','frustrating','annoying','expensive','confusing','broken','bad','worst','terrible','never','refund','disappointed','fails'];
+  const POS_WORDS = ['love','great','fast','excellent','smooth','helpful','premium','recommend','perfect','amazing','wonderful','quality','best','easy'];
+  const TOPIC_WORDS = {
+    shipping:['shipping','package','delivery','arrived','courier'],
+    app:['app','crash','login','logout','mobile','ui','dark mode'],
+    pricing:['pricing','price','expensive','cheap','tier','plan','cost'],
+    support:['support','agent','reply','response','help','refund'],
+    checkout:['checkout','cart','pay','apple pay','google pay','order']
+  };
+
+  function analyzeText(text){
+    const lower = text.toLowerCase();
+    let pos=0,neg=0;
+    POS_WORDS.forEach(w=>{ if(lower.includes(w)) pos++; });
+    NEG_WORDS.forEach(w=>{ if(lower.includes(w)) neg++; });
+    let sentiment = pos>neg?'positive':neg>pos?'negative':'neutral';
+    let score = Math.round(((pos-neg)/Math.max(1,pos+neg))*100);
+    const topics = [];
+    Object.entries(TOPIC_WORDS).forEach(([t,words])=>{ if(words.some(w=>lower.includes(w))) topics.push(t); });
+    const keywords = lower.split(/[^a-z']+/).filter(w=>w.length>4).filter((v,i,a)=>a.indexOf(v)===i).slice(0,6);
+    return {sentiment,score,topics,keywords};
+  }
+
+  function sentimentChip(s){
+    const map={positive:'sent-pos',negative:'sent-neg',neutral:'sent-neu'};
+    return `<span class="chip ${map[s]}">${s}</span>`;
+  }
+
+  document.getElementById('analyze-text').addEventListener('click',()=>{
+    const text = textInput.value.trim();
+    if(!text){ toast('Please paste some feedback first'); return; }
+    const a = analyzeText(text);
+    const res = document.getElementById('text-result');
+    res.innerHTML = `
+      <div class="flex items-center justify-between mb-4">
+        <span class="chip bg-white/10 text-[#C7F36B]"><span class="pill-dot bg-[#C7F36B]"></span> Demo Analysis</span>
+        ${sentimentChip(a.sentiment)}
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-5">
+        <div class="bg-[#171923] rounded-lg p-3"><div class="mono text-[10px] uppercase text-[#9a9ca6]">Sentiment Score</div><div class="font-display font-700 text-2xl ${a.sentiment==='positive'?'text-[#C7F36B]':a.sentiment==='negative'?'text-[#FF6B6B]':'text-white'}">${a.score>0?'+':''}${a.score}</div></div>
+        <div class="bg-[#171923] rounded-lg p-3"><div class="mono text-[10px] uppercase text-[#9a9ca6]">Topics</div><div class="font-display font-700 text-2xl text-white">${a.topics.length||0}</div></div>
+      </div>
+      <div class="mb-4">
+        <div class="mono text-[10px] uppercase text-[#9a9ca6] mb-2">Detected Topics</div>
+        <div class="flex flex-wrap gap-2">${a.topics.length?a.topics.map(t=>`<span class="chip bg-[#5267F2]/20 text-[#9DB0FF]">#${t}</span>`).join(''):'<span class="text-[#9a9ca6] text-sm">None detected</span>'}</div>
+      </div>
+      <div class="mb-4">
+        <div class="mono text-[10px] uppercase text-[#9a9ca6] mb-2">Keywords</div>
+        <div class="flex flex-wrap gap-2">${a.keywords.map(k=>`<span class="chip bg-white/5 text-white border border-white/10">${k}</span>`).join('')}</div>
+      </div>
+      <div>
+        <div class="mono text-[10px] uppercase text-[#9a9ca6] mb-2">Original Feedback</div>
+        <p class="editorial text-[15px] text-white leading-snug border-l-2 border-[#C7F36B] pl-3">"${text.slice(0,180)}${text.length>180?'…':''}"</p>
+      </div>
+    `;
+    saveSession({type:'Text',records:1,summary:`${a.sentiment} sentiment · ${a.topics.length} topics`});
+  });
+
+  // ---------- Voice analyzer ----------
+  let mediaRecorder=null, audioChunks=[], recording=false;
+  const recordBtn = document.getElementById('record-btn');
+  const recStatus = document.getElementById('rec-status');
+  const audioPlayer = document.getElementById('audio-player');
+  const voiceWave = document.getElementById('voice-wave');
+
+  function animateWave(on){
+    voiceWave.querySelectorAll('div').forEach((b,i)=>{
+      b.className = on?`wave-bar w-1 bg-[#C7F36B] h-full`:`w-1 bg-[#C7F36B]`;
+      b.style.animationDelay = (i*0.06)+'s';
+      if(!on) b.style.height = (4+Math.random()*40)+'px';
+    });
+    voiceWave.classList.toggle('opacity-40',!on);
+    voiceWave.classList.toggle('opacity-100',on);
+  }
+  animateWave(false);
+
+  recordBtn.addEventListener('click', async ()=>{
+    if(recording){
+      mediaRecorder.stop();
+      return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+      mediaRecorder = new MediaRecorder(stream);
+      audioChunks = [];
+      mediaRecorder.ondataavailable = e=>audioChunks.push(e.data);
+      mediaRecorder.onstop = ()=>{
+        const blob = new Blob(audioChunks,{type:'audio/webm'});
+        audioPlayer.src = URL.createObjectURL(blob);
+        audioPlayer.classList.remove('hidden');
+        recording=false;
+        recordBtn.innerHTML = '<i data-lucide="mic" class="w-4 h-4"></i> <span>Start Recording</span>';
+        lucide.createIcons();
+        recStatus.textContent = 'Recording complete · Demo transcript ready';
+        recStatus.classList.remove('text-[#FF6B6B]');
+        recStatus.classList.add('text-[#C7F36B]');
+        animateWave(false);
+        showVoiceDemoResult();
+        stream.getTracks().forEach(t=>t.stop());
+      };
+      mediaRecorder.start();
+      recording=true;
+      recordBtn.innerHTML = '<i data-lucide="square" class="w-4 h-4"></i> <span>Stop</span>';
+      lucide.createIcons();
+      recStatus.textContent = 'Recording… · Permission granted';
+      recStatus.classList.remove('text-[#9a9ca6]');
+      recStatus.classList.add('text-[#FF6B6B]');
+      animateWave(true);
+    } catch(err){
+      toast('Microphone access denied — demo transcript used instead');
+      recStatus.textContent = 'Mic denied · Demo transcript available';
+      showVoiceDemoResult();
+    }
+  });
+
+  document.getElementById('audio-upload').addEventListener('change',(e)=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    if(!file.type.startsWith('audio/')){ toast('Unsupported audio format'); return; }
+    audioPlayer.src = URL.createObjectURL(file);
+    audioPlayer.classList.remove('hidden');
+    recStatus.textContent = `Loaded: ${file.name} · Demo transcript`;
+    showVoiceDemoResult();
+  });
+
+  function showVoiceDemoResult(){
+    const transcript = "I really like the new checkout flow, it's much faster than before. But my last order arrived six days late and I had to email support twice before anyone responded. Honestly the product is good but the shipping experience really lets it down.";
+    const a = analyzeText(transcript);
+    const res = document.getElementById('voice-result');
+    res.innerHTML = `
+      <div class="flex items-center justify-between mb-4">
+        <span class="chip bg-white/10 text-[#C7F36B]"><span class="pill-dot bg-[#C7F36B]"></span> Demo Transcript</span>
+        ${sentimentChip('neutral')}
+      </div>
+      <div class="p-3 rounded-lg bg-[#5267F2]/10 border border-[#5267F2]/30 text-[11px] text-[#B6B8C2] flex gap-2 mb-4">
+        <i data-lucide="info" class="w-4 h-4 text-[#5267F2] flex-shrink-0"></i>
+        Sentiment is derived from the <strong class="text-white">text transcript</strong>. Acoustic emotion recognition (tone/pitch) requires a separate model — not run in demo mode.
+      </div>
+      <div class="mb-4">
+        <div class="mono text-[10px] uppercase text-[#9a9ca6] mb-2">Transcript</div>
+        <p class="editorial text-[15px] text-white leading-snug">"${transcript}"</p>
+      </div>
+      <div class="grid grid-cols-3 gap-3 mb-4">
+        <div class="bg-[#171923] rounded-lg p-3"><div class="mono text-[10px] uppercase text-[#9a9ca6]">Score</div><div class="font-display font-700 text-xl text-white">${a.score>0?'+':''}${a.score}</div></div>
+        <div class="bg-[#171923] rounded-lg p-3"><div class="mono text-[10px] uppercase text-[#9a9ca6]">Topics</div><div class="font-display font-700 text-xl text-[#C7F36B]">${a.topics.length}</div></div>
+        <div class="bg-[#171923] rounded-lg p-3"><div class="mono text-[10px] uppercase text-[#9a9ca6]">Words</div><div class="font-display font-700 text-xl text-[#5267F2]">${transcript.split(' ').length}</div></div>
+      </div>
+      <div>
+        <div class="mono text-[10px] uppercase text-[#9a9ca6] mb-2">Detected Topics</div>
+        <div class="flex flex-wrap gap-2">${a.topics.map(t=>`<span class="chip bg-[#5267F2]/20 text-[#9DB0FF]">#${t}</span>`).join('')}</div>
+      </div>
+    `;
+    lucide.createIcons();
+    saveSession({type:'Voice',records:1,summary:`Transcript analyzed · ${a.topics.length} topics`});
+  }
+
+  // ---------- CSV batch ----------
+  document.getElementById('csv-upload').addEventListener('change',(e)=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    const val = document.getElementById('csv-validation');
+    if(file.size > 5*1024*1024){ val.innerHTML = '<span class="text-[#FF6B6B]">✕ File exceeds 5MB limit</span>'; return; }
+    if(!file.name.endsWith('.csv')){ val.innerHTML = '<span class="text-[#FF6B6B]">✕ Only .csv files supported</span>'; return; }
+    const reader = new FileReader();
+    reader.onload = ev=>{
+      const text = ev.target.result;
+      const lines = text.split(/\r?\n/).filter(l=>l.trim());
+      if(!lines.length){ val.innerHTML='<span class="text-[#FF6B6B]">✕ Empty file</span>'; return; }
+      const headers = lines[0].split(',').map(h=>h.trim().toLowerCase());
+      const required = ['feedback','source','date'];
+      const missing = required.filter(r=>!headers.includes(r));
+      if(missing.length){ val.innerHTML = `<span class="text-[#FF6B6B]">✕ Missing columns: ${missing.join(', ')}</span>`; return; }
+      val.innerHTML = `<span class="text-[#C7F36B]">✓ Valid · ${lines.length-1} rows detected</span>`;
+      window._csvData = lines.slice(1).map(l=>{ const p=l.split(','); return {feedback:p[0],source:p[1],date:p[2]}; });
+    };
+    reader.readAsText(file);
+  });
+
+  document.getElementById('load-sample-csv').addEventListener('click',()=>{
+    const val = document.getElementById('csv-validation');
+    val.innerHTML = `<span class="text-[#C7F36B]">✓ Sample loaded · ${SAMPLE_FEEDBACK.length} rows</span>`;
+    window._csvData = SAMPLE_FEEDBACK.map(f=>({feedback:f.text,source:f.source,date:f.date}));
+  });
+
+  document.getElementById('analyze-batch').addEventListener('click',()=>{
+    const data = window._csvData;
+    if(!data || !data.length){ toast('Load a valid CSV first'); return; }
+    const results = data.map(d=>({...d, ...analyzeText(d.feedback)}));
+    const pos = results.filter(r=>r.sentiment==='positive').length;
+    const neg = results.filter(r=>r.sentiment==='negative').length;
+    const neu = results.filter(r=>r.sentiment==='neutral').length;
+    document.getElementById('batch-result').innerHTML = `
+      <div class="grid grid-cols-4 gap-3 mb-5">
+        <div class="bg-[#171923] rounded-lg p-3"><div class="mono text-[10px] uppercase text-[#9a9ca6]">Total</div><div class="font-display font-700 text-2xl text-white">${results.length}</div></div>
+        <div class="bg-[#171923] rounded-lg p-3"><div class="mono text-[10px] uppercase text-[#9a9ca6]">Positive</div><div class="font-display font-700 text-2xl text-[#C7F36B]">${pos}</div></div>
+        <div class="bg-[#171923] rounded-lg p-3"><div class="mono text-[10px] uppercase text-[#9a9ca6]">Negative</div><div class="font-display font-700 text-2xl text-[#FF6B6B]">${neg}</div></div>
+        <div class="bg-[#171923] rounded-lg p-3"><div class="mono text-[10px] uppercase text-[#9a9ca6]">Neutral</div><div class="font-display font-700 text-2xl text-white">${neu}</div></div>
+      </div>
+      <div class="space-y-2 max-h-[300px] overflow-y-auto">
+        ${results.slice(0,8).map(r=>`
+          <div class="flex items-start gap-3 p-3 rounded-lg bg-[#171923] border border-white/5">
+            ${sentimentChip(r.sentiment)}
+            <span class="text-sm text-white flex-1">${r.feedback.slice(0,90)}${r.feedback.length>90?'…':''}</span>
+            <span class="mono text-[10px] text-[#9a9ca6]">${r.topics.join(', ')||'—'}</span>
+          </div>`).join('')}
+      </div>`;
+    saveSession({type:'CSV Batch',records:results.length,summary:`${pos}+ / ${neg}- / ${neu} neutral`});
+  });
+
+  // ---------- Explorer ----------
+  const listEl = document.getElementById('feedback-list');
+  const resultCount = document.getElementById('result-count');
+
+  function renderList(){
+    const q = document.getElementById('filter-search').value.toLowerCase();
+    const s = document.getElementById('filter-sentiment').value;
+    const t = document.getElementById('filter-topic').value;
+    const sort = document.getElementById('sort-by').value;
+    let items = SAMPLE_FEEDBACK.filter(f=>{
+      if(q && !f.text.toLowerCase().includes(q)) return false;
+      if(s!=='all' && f.sentiment!==s) return false;
+      if(t!=='all' && f.topic!==t) return false;
+      return true;
+    });
+    if(sort==='newest') items.sort((a,b)=>new Date(b.date)-new Date(a.date));
+    if(sort==='oldest') items.sort((a,b)=>new Date(a.date)-new Date(b.date));
+    if(sort==='sentiment') items.sort((a,b)=>{const o={positive:1,neutral:2,negative:3};return o[a.sentiment]-o[b.sentiment];});
+    resultCount.textContent = items.length;
+    listEl.innerHTML = items.length ? items.map(f=>`
+      <div class="border border-[#E5E3DA] rounded-xl p-4 hover:border-[#171923] transition group">
+        <div class="flex items-start justify-between gap-3 mb-2">
+          <div class="flex items-center gap-2 flex-wrap">
+            ${sentimentChip(f.sentiment)}
+            <span class="chip bg-white border border-[#E5E3DA] text-[#6B6E7A]">#${f.topic}</span>
+            <span class="mono text-[11px] text-[#6B6E7A]">${f.source}</span>
+          </div>
+          <span class="mono text-[11px] text-[#6B6E7A]">${new Date(f.date).toLocaleDateString()}</span>
+        </div>
+        <p class="text-sm text-[#171923] leading-relaxed">${f.text}</p>
+      </div>`).join('') : `<div class="text-center text-sm text-[#6B6E7A] py-10">No feedback matches your filters.</div>`;
+  }
+  ['filter-search','filter-sentiment','filter-topic','sort-by'].forEach(id=>document.getElementById(id).addEventListener('input',renderList));
+  renderList();
+
+  document.getElementById('export-csv').addEventListener('click',()=>{
+    const q = document.getElementById('filter-search').value.toLowerCase();
+    const s = document.getElementById('filter-sentiment').value;
+    const t = document.getElementById('filter-topic').value;
+    const rows = SAMPLE_FEEDBACK.filter(f=>{
+      if(q && !f.text.toLowerCase().includes(q)) return false;
+      if(s!=='all' && f.sentiment!==s) return false;
+      if(t!=='all' && f.topic!==t) return false;
+      return true;
+    });
+    if(!rows.length){ toast('Nothing to export'); return; }
+    const csv = ['id,feedback,source,sentiment,topic,date', ...rows.map(r=>`${r.id},"${r.text.replace(/"/g,'""')}",${r.source},${r.sentiment},${r.topic},${r.date}`)].join('\n');
+    const blob = new Blob([csv],{type:'text/csv'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'feedback_export.csv';
+    a.click();
+    toast('CSV exported');
+  });
+
+  // ---------- History (localStorage) ----------
+  const HISTORY_KEY = 'feedbackfusion_history';
+  function getHistory(){ try { return JSON.parse(localStorage.getItem(HISTORY_KEY))||[]; } catch { return []; } }
+  function saveSession(s){
+    const h = getHistory();
+    h.unshift({id:Date.now(),date:new Date().toISOString(),...s});
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(h.slice(0,20)));
+    renderHistory();
+  }
+  function renderHistory(){
+    const h = getHistory();
+    const el = document.getElementById('history-list');
+    if(!h.length){
+      el.innerHTML = `<div class="text-[#9a9ca6] text-sm text-center py-12 border border-dashed border-white/10 rounded-2xl">No analysis sessions yet. Run an analyzer above to create one.</div>`;
+      return;
+    }
+    el.innerHTML = h.map(s=>`
+      <div class="bg-[#1F2230] border border-white/10 rounded-xl p-4 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-lg bg-[#171923] flex items-center justify-center"><i data-lucide="${s.type==='Voice'?'mic':s.type==='CSV Batch'?'file-csv':'message-square-text'}" class="w-5 h-5 text-[#C7F36B]"></i></div>
+          <div>
+            <div class="font-display font-600">${s.type} Analysis</div>
+            <div class="mono text-[11px] text-[#9a9ca6]">${new Date(s.date).toLocaleString()} · ${s.records} record(s)</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="mono text-[11px] text-[#B6B8C2] hidden sm:inline">${s.summary}</span>
+          <button class="text-[#9a9ca6] hover:text-white" onclick="reopenSession(${s.id})"><i data-lucide="external-link" class="w-4 h-4"></i></button>
+          <button class="text-[#9a9ca6] hover:text-[#FF6B6B]" onclick="deleteSession(${s.id})"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+        </div>
+      </div>`).join('');
+    lucide.createIcons();
+  }
+  window.reopenSession = (id)=>{ toast('Session loaded (demo)'); document.getElementById('analyzer').scrollIntoView({behavior:'smooth'}); };
+  window.deleteSession = (id)=>{
+    const h = getHistory().filter(s=>s.id!==id);
+    localStorage.setItem(HISTORY_KEY,JSON.stringify(h));
+    renderHistory();
+    toast('Session deleted');
+  };
+  document.getElementById('clear-history').addEventListener('click',()=>{
+    localStorage.removeItem(HISTORY_KEY);
+    renderHistory();
+    toast('History cleared');
+  });
+  renderHistory();
+
+  // ---------- Smooth anchor scroll ----------
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const id = a.getAttribute('href');
+      if(id.length>1){ const t=document.querySelector(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+    });
+  });
+</script>
+</body>
+</html>
