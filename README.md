@@ -1,14 +1,30 @@
-# API / Backend
+# AI-Powered-Customer-Feedback-Analytics-Platform
 
-No backend API is present in the supplied source code.
+## Technologies Used
 
-This project is currently a client-side demo/dashboard. The JavaScript uses:
-- Browser `localStorage` for saved state
-- Browser `FileReader` for importing local files
-- In-memory sample feedback data
+### Frontend
 
-No `fetch()` calls, REST API endpoints, database connection, authentication
-service, or server-side code were found in the supplied project.
+* **HTML5** – Provides the structure and semantic layout of the application.
+* **CSS3** – Used for styling, responsive layouts, animations, and visual design.
+* **JavaScript (ES6+)** – Handles application logic, interactions, data processing, and dynamic UI behavior.
+* **React 18** – Used to build the interactive and component-based user interface.
+* **Tailwind CSS** – Used for utility-based styling and responsive UI development.
 
-If you later add a backend, this folder can contain files such as:
-`api.js`, endpoint definitions, or server integration code.
+### Data Visualization
+
+* **Recharts** – Used to create interactive charts and visual analytics for customer feedback data.
+
+### Icons & UI
+
+* **Lucide Icons** – Provides modern and consistent icons throughout the application.
+* **Google Fonts** – Used for typography and improved visual presentation.
+
+### Browser Technologies
+
+* **LocalStorage API** – Used for storing application data locally in the browser.
+* **FileReader API** – Used to import and process local feedback files.
+
+### Development Technologies
+
+* **Vite** – Used as the frontend development and build tool.
+* **npm** – Used for package and dependency management.
